@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>活動倒數計時器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <header class="app-header">
+        <div class="title-editor">
+          <label class="field-label" for="eventTitleInput">活動標題</label>
+          <input
+            id="eventTitleInput"
+            class="title-input"
+            type="text"
+            maxlength="60"
+            placeholder="請輸入活動標題"
+            value="活動流程"
+          />
+        </div>
+        <h1 class="event-title" id="eventTitleDisplay">活動流程</h1>
+      </header>
+
+      <main class="layout">
+        <section class="timer-panel" aria-live="polite">
+          <div class="time-display" id="timeDisplay">03:00</div>
+          <div class="hint-display" id="hintDisplay"></div>
+          <div class="controls">
+            <button class="control-button" id="startPauseButton">開始</button>
+            <button class="control-button" id="resetButton">重設</button>
+            <button class="control-button" id="muteButton" aria-pressed="false">
+              🔔 音效：開
+            </button>
+          </div>
+        </section>
+
+        <section class="settings-panel" aria-label="倒數設定">
+          <h2 class="panel-title">時間設定</h2>
+          <form id="settingsForm" class="settings-form">
+            <div class="form-field">
+              <label class="field-label" for="durationInput">總時長（分鐘）</label>
+              <input
+                id="durationInput"
+                class="number-input"
+                type="number"
+                min="0"
+                step="0.5"
+                value="3"
+              />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label" for="reminderInput">提醒點（剩餘分鐘）</label>
+              <div class="reminder-input-row">
+                <input
+                  id="reminderInput"
+                  class="number-input"
+                  type="number"
+                  min="0"
+                  step="0.5"
+                  placeholder="例如 1.5 表示剩 1 分 30 秒"
+                />
+                <button class="secondary-button" type="button" id="addReminderButton">
+                  新增
+                </button>
+              </div>
+              <div class="form-message" id="reminderMessage">可加入多個提醒點，以協助掌握節奏。</div>
+              <ul class="reminder-list" id="reminderList" aria-live="polite"></ul>
+            </div>
+
+            <button class="primary-button" type="submit">套用設定</button>
+            <div class="form-message" id="settingsMessage" role="status"></div>
+          </form>
+        </section>
+      </main>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
